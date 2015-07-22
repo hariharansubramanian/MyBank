@@ -8,8 +8,10 @@ public class BankAccount {
     public static final double OVERDRAFT_FEE = 30;
 
     public void Withdraw(double amount) {
-        mBalance -= amount;
-
+         mBalance -= amount;
+        if (mBalance < 0) {                                 //If Negative balance then deduct Overdraft Fee
+            mBalance -=OVERDRAFT_FEE;
+        }
     }
 
     public void Deposit(double amount) {

@@ -22,7 +22,7 @@ public class MainActivity extends ActionBarActivity {
         Button mBtnWithdraw = (Button) findViewById(R.id.withdraw);
         Button mBtnDeposit = (Button) findViewById(R.id.deposit);
         final TextView mAmountDisplay = (TextView) findViewById(R.id.amount);
-        Log.d(TAG,"Overdraft Fee is"+BankAccount.OVERDRAFT_FEE);
+        Log.d(TAG,"MainActivity");
         mBtnWithdraw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
