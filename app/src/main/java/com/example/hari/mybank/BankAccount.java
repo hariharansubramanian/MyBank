@@ -1,5 +1,7 @@
 package com.example.hari.mybank;
 
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 /**
@@ -10,20 +12,51 @@ public class BankAccount {
     private ArrayList<Double> mTransactions;
     public static final double OVERDRAFT_FEE = 30;
 
-    BankAccount() {
+    public enum Type {SAVINGS, CHECKING;}
+
+    private Type mType;
+
+/*    BankAccount() {
         mTransactions = new ArrayList<Double>();
+    }*/
+
+
+    BankAccount(Type accountType) {
+        mTransactions = new ArrayList<Double>();
+        mType = accountType;
+
     }
 
-    public void Withdraw(double amount) {
+    public int Withdraw(double amount) {
+        if (mType == Type.SAVINGS) {
+            if (numberOfNegativeWithdrawals() > 3) {
+
+                return(3);
+            }
+
+        }
         mTransactions.add(-amount);
         if (getmBalance() < 0) {                                 //If Negative balance then deduct Overdraft Fee
             mTransactions.add(-OVERDRAFT_FEE);
         }
+        return(0);
     }
 
     public void Deposit(double amount) {
         mTransactions.add(amount);
 
+    }
+
+    protected int numberOfNegativeWithdrawals() {
+        int count = 0;
+        for (int i = 0; i < mTransactions.size(); i++) {
+
+
+            if (getmBalance() < 0) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public double getmBalance() {
