@@ -7,34 +7,22 @@ import java.util.ArrayList;
 /**
  * Created by Nicky on 7/22/2015.
  */
-public class BankAccount {
+public abstract class BankAccount {
     private double mBalance;
     private ArrayList<Double> mTransactions;
     public static final double OVERDRAFT_FEE = 30;
 
-    public enum Type {SAVINGS, CHECKING;}
-
-    private Type mType;
 
 /*    BankAccount() {
         mTransactions = new ArrayList<Double>();
     }*/
 
-
-    BankAccount(Type accountType) {
+    public BankAccount() {
         mTransactions = new ArrayList<Double>();
-        mType = accountType;
-
     }
 
+
     public void Withdraw(double amount) {
-        if (mType == Type.SAVINGS) {
-            if (numberOfNegativeWithdrawals() >= 3) {
-
-                return;
-            }
-
-        }
         mTransactions.add(-amount);
         if (getmBalance() < 0) {                                 //If Negative balance then deduct Overdraft Fee
             mTransactions.add(-OVERDRAFT_FEE);

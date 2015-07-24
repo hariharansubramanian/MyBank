@@ -18,55 +18,55 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final BankAccount bank = new BankAccount(BankAccount.Type.SAVINGS);
+        final BankAccount bank = new Checkingaccount();
         final EditText mAmountInput = (EditText) findViewById(R.id.userinput);
         Button mBtnWithdraw = (Button) findViewById(R.id.withdraw);
         final Button mBtnDeposit = (Button) findViewById(R.id.deposit);
         final TextView mAmountDisplay = (TextView) findViewById(R.id.amount);
         Log.d(TAG, "MainActivity");
         mBtnWithdraw.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick (View v){
-                String amount = mAmountInput.getText().toString();
-                bank.Withdraw(Double.parseDouble(amount));
-                mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
-                }
-            }
+                                            @Override
+                                            public void onClick(View v) {
+                                                String amount = mAmountInput.getText().toString();
+                                                bank.Withdraw(Double.parseDouble(amount));
+                                                mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
+                                            }
+                                        }
         );
 
-            mBtnDeposit.setOnClickListener(new OnClickListener()
+        mBtnDeposit.setOnClickListener(new OnClickListener()
 
-            {
-                @Override
-                public void onClick (View v){
-                String amount = mAmountInput.getText().toString();
-                bank.Deposit(Double.parseDouble(amount));
-                mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
-            }
-            }
+                                       {
+                                           @Override
+                                           public void onClick(View v) {
+                                               String amount = mAmountInput.getText().toString();
+                                               bank.Deposit(Double.parseDouble(amount));
+                                               mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
+                                           }
+                                       }
 
-            );
-        }
+        );
+    }
 
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_main, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
             return true;
         }
 
-        @Override
-        public boolean onOptionsItemSelected (MenuItem item){
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            int id = item.getItemId();
-
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
-                return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
+        return super.onOptionsItemSelected(item);
     }
+}
