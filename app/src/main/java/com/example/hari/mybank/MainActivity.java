@@ -28,16 +28,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick (View v){
                 String amount = mAmountInput.getText().toString();
-                int limit = bank.Withdraw(Double.parseDouble(amount));
-                if (limit == 3) {
-                    mAmountDisplay.setText("Negative Bank balance, Maximum amount of Withdrawals reached.");
-                } else {
-
-
-                    mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
+                bank.Withdraw(Double.parseDouble(amount));
+                mAmountDisplay.setText("Your Account's balance is :" + bank.getmBalance());
                 }
             }
-        });
+        );
 
             mBtnDeposit.setOnClickListener(new OnClickListener()
 

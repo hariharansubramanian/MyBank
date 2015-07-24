@@ -27,11 +27,11 @@ public class BankAccount {
 
     }
 
-    public int Withdraw(double amount) {
+    public void Withdraw(double amount) {
         if (mType == Type.SAVINGS) {
-            if (numberOfNegativeWithdrawals() > 3) {
+            if (numberOfNegativeWithdrawals() >= 3) {
 
-                return(3);
+                return;
             }
 
         }
@@ -39,7 +39,6 @@ public class BankAccount {
         if (getmBalance() < 0) {                                 //If Negative balance then deduct Overdraft Fee
             mTransactions.add(-OVERDRAFT_FEE);
         }
-        return(0);
     }
 
     public void Deposit(double amount) {
@@ -52,7 +51,7 @@ public class BankAccount {
         for (int i = 0; i < mTransactions.size(); i++) {
 
 
-            if (getmBalance() < 0) {
+            if (mTransactions.get(i) < 0) {
                 count++;
             }
         }
